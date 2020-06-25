@@ -525,12 +525,6 @@ class Patches implements PluginInterface, EventSubscriberInterface {
    *   TRUE if patch was applied, FALSE otherwise.
    */
   protected function applyPatchWithGit($install_path, $patch_levels, $filename) {
-    // Do not use git apply unless the install path is itself a git repo
-    // @see https://stackoverflow.com/a/27283285
-    if (!is_dir($install_path . '/.git')) {
-      return FALSE;
-    }
-
     $patched = FALSE;
     foreach ($patch_levels as $patch_level) {
       if ($this->io->isVerbose()) {
